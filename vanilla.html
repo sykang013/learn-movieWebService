@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 1.HTML에서 버튼 생성 -->
+    <span id="count">Total clicks: 0 </span>
+    <button id="btn">Click!</button>
+  </body>
+  <script>
+    let counter = 0;
+    //2. JS로 버튼 가져옴
+    const button = document.getElementById("btn");
+    const span = document.getElementById("count");
+    //4. 이벤트에 대응할 함수
+    function handleClick() {
+      // console.log("i have been clicked");
+      counter = counter + 1;
+      span.innerText = `Total clicks: ${counter}`;
+    }
+    //3. 이벤트 리스너로 클릭이라는 이벤트 감지하도록.
+    button.addEventListener("click", handleClick);
+  </script>
+</html>

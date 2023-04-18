@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <body>
+    <div id="root"></div>
+  </body>
+  <!-- 리액트 import -->
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <!-- 리액트돔 import -->
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script>
+    //root를 id로 불러오기
+    const root = document.getElementById("root");
+    //span 이라는 엘리먼트 생성
+    const span = React.createElement(
+      //어떤 태그든 유효한 HTML 태그이기만 하면 된다.
+      "span",
+      //property
+      { id: "wow-span", style: { color: "blue" } },
+      //content
+      "Hello, I am a span"
+    );
+    //ReactDOM의 render를 사용하여 span 요소를 root 라는 id를 가진 div에 배치
+    ReactDOM.render(span, root);
+  </script>
+</html>
