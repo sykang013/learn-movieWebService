@@ -11,15 +11,26 @@
     //root를 id로 불러오기
     const root = document.getElementById("root");
     //span 이라는 엘리먼트 생성
-    const span = React.createElement(
-      //어떤 태그든 유효한 HTML 태그이기만 하면 된다.
-      "span",
-      //property
-      { id: "wow-span", style: { color: "blue" } },
-      //content
+    const title = React.createElement(
+      "h3",
+      { onMouseEnter: () => console.log("mouse enter") },
       "Hello, I am a span"
     );
+    //property에 이벤트 등록이 가능하다.(중요)
+    const btn = React.createElement(
+      "button",
+      {
+        onClick: () => console.log("clicked"),
+        style: {
+          backgroundColor: "blue",
+          color: "white",
+        },
+      },
+
+      "Click me!"
+    );
+    const container = React.createElement("div", null, [title, btn]);
     //ReactDOM의 render를 사용하여 span 요소를 root 라는 id를 가진 div에 배치
-    ReactDOM.render(span, root);
+    ReactDOM.render(container, root);
   </script>
 </html>
