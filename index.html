@@ -7,30 +7,55 @@
   <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
   <!-- 리액트돔 import -->
   <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-  <script>
+  <!-- 바벨 import -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
     //root를 id로 불러오기
     const root = document.getElementById("root");
-    //span 이라는 엘리먼트 생성
-    const title = React.createElement(
-      "h3",
-      { onMouseEnter: () => console.log("mouse enter") },
-      "Hello, I am a span"
+    //아래: JSX방식(작성및 이해가 쉽다 + )
+    const Title = () => (
+      <h3 id="title" onMouseEnter={() => console.log("mouse entered!")}>
+        Hello!
+      </h3>
     );
+    // 아래: React의 createElement를 사용한 방식
+    // const title = React.createElement(
+    //   "h3",
+    //   { onMouseEnter: () => console.log("mouse enter") },
+    //   "Hello, I am a span"
+    // );
+    //아래: JSX방식
+    //컴포넌트로 사용하려면 함수로 만들어줘야하며, 함수명은 대문자로 시작해야 인식된다.
     //property에 이벤트 등록이 가능하다.(중요)
-    const btn = React.createElement(
-      "button",
-      {
-        onClick: () => console.log("clicked"),
-        style: {
-          backgroundColor: "blue",
-          color: "white",
-        },
-      },
-
-      "Click me!"
+    const Button = () => (
+      <button
+        style={{ backgroundColor: "tomato" }}
+        onClick={() => console.log("im clicked!")}
+      >
+        Click me
+      </button>
     );
-    const container = React.createElement("div", null, [title, btn]);
+    // 아래: React의 createElement를 사용한 방식
+    // const btn = React.createElement(
+    //   "button",
+    //   {
+    //     onClick: () => console.log("clicked"),
+    //     style: {
+    //       backgroundColor: "blue",
+    //       color: "white",
+    //     },
+    //   },
+
+    //   "Click me!"
+    // );
+    const Container = () => (
+      <div>
+        <Title /> <Button />
+      </div>
+    );
+    //아래: React의 createElement를 사용한 방식
+    // const container = React.createElement("div", null, [Title, Button]);
     //ReactDOM의 render를 사용하여 span 요소를 root 라는 id를 가진 div에 배치
-    ReactDOM.render(container, root);
+    ReactDOM.render(<Container />, root);
   </script>
 </html>
