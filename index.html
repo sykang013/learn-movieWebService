@@ -5,7 +5,7 @@
   </body>
   <!-- 리액트 import -->
   <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
-  <!-- 리액트돔 import -->
+  <!-- 리액트돔 import (리액트 돔은 가상돔이다)-->
   <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
   <!-- 바벨 import -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -48,24 +48,25 @@
 
     //   "Click me!"
     // );
-    let counter = 0;
-    function countUp() {
-      counter = counter + 1;
-      render();
+    function App() {
+      //초깃값 설정 가능
+      const [counter, modifier] = React.useState(0);
+      // 아래: data가 array로 출력됨. 인덱스0의 값은 상태, 인덱스1은 그것을 바꿀 함수
+      // console.log(data);
+      // 아래: 일일이 인덱스 번호로 지정해줄 수 있다. 근데 그것이 별로라 구조분해 할당 이용.
+      // const counter = data[0];
+      // const modifier = data[1];
+      return (
+        <div>
+          <h3>Total clicks : {counter}</h3>
+          <button> Click Me!</button>
+        </div>
+      );
     }
-    function render() {
-      ReactDOM.render(<Container />, root);
-    }
-    const Container = () => (
-      <div>
-        <h3>Total clicks : {counter}</h3>
-        <button onClick={countUp}> Click Me!</button>
-      </div>
-    );
     //아래: React의 createElement를 사용한 방식
     // const container = React.createElement("div", null, [Title, Button]);
     //ReactDOM의 render를 사용하여 span 요소를 root 라는 id를 가진 div에 배치
     // ReactDOM.render(<Container />, root);
-    render();
+    ReactDOM.render(<App />, root);
   </script>
 </html>
