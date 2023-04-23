@@ -49,8 +49,11 @@
     //   "Click me!"
     // );
     function App() {
-      //초깃값 설정 가능
-      const [counter, modifier] = React.useState(0);
+      // 아래: useState() 초깃값 설정 가능
+      let [counter, setCounter] = React.useState(0);
+      const onClick = () => {
+        setCounter(counter + 1);
+      };
       // 아래: data가 array로 출력됨. 인덱스0의 값은 상태, 인덱스1은 그것을 바꿀 함수
       // console.log(data);
       // 아래: 일일이 인덱스 번호로 지정해줄 수 있다. 근데 그것이 별로라 구조분해 할당 이용.
@@ -59,7 +62,7 @@
       return (
         <div>
           <h3>Total clicks : {counter}</h3>
-          <button> Click Me!</button>
+          <button onClick={onClick}> Click Me!</button>
         </div>
       );
     }
