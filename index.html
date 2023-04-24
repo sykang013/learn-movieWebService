@@ -13,7 +13,7 @@
     //root를 id로 불러오기
     const root = document.getElementById("root");
     //아래: JSX방식(작성및 이해가 쉽다)
-    // const Title = () => (
+    //// const Title = () => (
     //   <h3 id="title" onMouseEnter={() => console.log("mouse entered!")}>
     //     Hello!
     //   </h3>
@@ -25,7 +25,7 @@
     //   "Hello, I am a span"
     // );
     //아래: JSX방식
-    //컴포넌트로 사용하려면 함수로 만들어줘야하며, 함수명은 대문자로 시작해야 인식된다.
+    ////컴포넌트로 사용하려면 함수로 만들어줘야하며, 함수명은 대문자로 시작해야 인식된다.
     //property에 이벤트 등록이 가능하다.(중요)
     // const Button = () => (
     //   <button
@@ -52,18 +52,18 @@
       // 아래: useState() 초깃값 설정 가능. state가 바뀌면 리렌더가 일어난다.(필요한 부분만 업데이트함)
       let [counter, setCounter] = React.useState(0);
       const onClick = () => {
-        // #3.5 : 이전 값을 바탕으로 현재의 값을 변경하고 싶다면, 아래 방법은 오류가 생길 수 있다.
+        // #3.4 : 이전 값을 바탕으로 현재의 값을 변경하고 싶다면, 아래 방법은 오류가 생길 수 있다.
         //// setCounter(counter + 1);
-        // #3.5 : modifier((현재 값) => 원하는 값); : 예상치 못한 업데이트가 혼동을 주는것을 방지해준다.
+        // #3.4 : modifier((현재 값) => 원하는 값); : 예상치 못한 업데이트가 혼동을 주는것을 방지해준다.
         setCounter((current) => current + 1);
       };
       console.log("rendered");
       console.log(counter);
       // 아래: data가 array로 출력됨. 인덱스0의 값은 상태, 인덱스1은 그것을 바꿀 함수
-      // console.log(data);
+      //// console.log(data);
       // 아래: 일일이 인덱스 번호로 지정해줄 수 있다. 근데 그것이 별로라 구조분해 할당 이용.
-      // const counter = data[0];
-      // const modifier = data[1];
+      //// const counter = data[0];
+      //// const modifier = data[1];
       return (
         <div>
           <h3>Total clicks : {counter}</h3>
@@ -71,10 +71,10 @@
         </div>
       );
     }
-    //아래: React의 createElement를 사용한 방식
-    // const container = React.createElement("div", null, [Title, Button]);
-    //ReactDOM의 render를 사용하여 span 요소를 root 라는 id를 가진 div에 배치
-    // ReactDOM.render(<Container />, root);
+    // 아래: React의 createElement를 사용한 방식
+    //// const container = React.createElement("div", null, [Title, Button]);
+    // ReactDOM의 render를 사용하여 span 요소를 root 라는 id를 가진 div에 배치
+    //// ReactDOM.render(<Container />, root);
     ReactDOM.render(<App />, root);
   </script>
 </html>
