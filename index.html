@@ -4,77 +4,38 @@
     <div id="root"></div>
   </body>
   <!-- 리액트 import -->
-  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
   <!-- 리액트돔 import (리액트 돔은 가상돔이다)-->
-  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
   <!-- 바벨 import -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    //root를 id로 불러오기
-    const root = document.getElementById("root");
-    //아래: JSX방식(작성및 이해가 쉽다)
-    //// const Title = () => (
-    //   <h3 id="title" onMouseEnter={() => console.log("mouse entered!")}>
-    //     Hello!
-    //   </h3>
-    // );
-    // 아래: React의 createElement를 사용한 방식
-    // const title = React.createElement(
-    //   "h3",
-    //   { onMouseEnter: () => console.log("mouse enter") },
-    //   "Hello, I am a span"
-    // );
-    //아래: JSX방식
-    ////컴포넌트로 사용하려면 함수로 만들어줘야하며, 함수명은 대문자로 시작해야 인식된다.
-    //property에 이벤트 등록이 가능하다.(중요)
-    // const Button = () => (
-    //   <button
-    //     style={{ backgroundColor: "tomato" }}
-    //     onClick={() => console.log("im clicked!")}
-    //   >
-    //     Click me
-    //   </button>
-    // );
-    // 아래: React의 createElement를 사용한 방식
-    // const btn = React.createElement(
-    //   "button",
-    //   {
-    //     onClick: () => console.log("clicked"),
-    //     style: {
-    //       backgroundColor: "blue",
-    //       color: "white",
-    //     },
-    //   },
-
-    //   "Click me!"
-    // );
     function App() {
-      // 아래: useState() 초깃값 설정 가능. state가 바뀌면 리렌더가 일어난다.(필요한 부분만 업데이트함)
-      let [counter, setCounter] = React.useState(0);
-      const onClick = () => {
-        // #3.4 : 이전 값을 바탕으로 현재의 값을 변경하고 싶다면, 아래 방법은 오류가 생길 수 있다.
-        //// setCounter(counter + 1);
-        // #3.4 : modifier((현재 값) => 원하는 값); : 예상치 못한 업데이트가 혼동을 주는것을 방지해준다.
-        setCounter((current) => current + 1);
+      //3.5 useState 를 console로 출력해보면 배열이 나온다.(value, modifier)
+      const [minutes, setMinutes] = React.useState();
+      const onChange = (event) => {
+        setMinutes(event.target.value);
+        // 3.5 SyntheticBaseEvent 발생. 리액트에서 이벤트를 변환하는듯(?) 그 안에 target 과 원래의 JS 이벤트도 확인할 수 있다.
+        // console.log(event.target.value);
       };
-      console.log("rendered");
-      console.log(counter);
-      // 아래: data가 array로 출력됨. 인덱스0의 값은 상태, 인덱스1은 그것을 바꿀 함수
-      //// console.log(data);
-      // 아래: 일일이 인덱스 번호로 지정해줄 수 있다. 근데 그것이 별로라 구조분해 할당 이용.
-      //// const counter = data[0];
-      //// const modifier = data[1];
       return (
         <div>
-          <h3>Total clicks : {counter}</h3>
-          <button onClick={onClick}> Click Me!</button>
+          <h1 className="hi">Super Converter</h1>
+          <label htmlFor="minutes">Minutes</label>
+          <input
+            value={minutes}
+            id="minutes"
+            placeholder="Minutes"
+            type="number"
+            onChange={onChange}
+          />
+          <h4>input value {minutes}</h4>
+          <label htmlFor="hours">Hours</label>
+          <input id="hours" placeholder="Hours" type="number" />
         </div>
       );
     }
-    // 아래: React의 createElement를 사용한 방식
-    //// const container = React.createElement("div", null, [Title, Button]);
-    // ReactDOM의 render를 사용하여 span 요소를 root 라는 id를 가진 div에 배치
-    //// ReactDOM.render(<Container />, root);
+    const root = document.getElementById("root");
     ReactDOM.render(<App />, root);
   </script>
 </html>
