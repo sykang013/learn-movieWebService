@@ -11,27 +11,41 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     function App() {
-      //3.5 useState 를 console로 출력해보면 배열이 나온다.(value, modifier)
+      // 3.5 useState 를 console로 출력해보면 배열이 나온다.(value, modifier)
+      // 3.6 index[0]은 데이터, index[1] 수정하기 위한 함수
       const [minutes, setMinutes] = React.useState();
       const onChange = (event) => {
+        // 3.6 이벤트 발생시 값 업데이트
         setMinutes(event.target.value);
         // 3.5 SyntheticBaseEvent 발생. 리액트에서 이벤트를 변환하는듯(?) 그 안에 target 과 원래의 JS 이벤트도 확인할 수 있다.
         // console.log(event.target.value);
       };
+      const reset = () => setMinutes(0);
       return (
         <div>
           <h1 className="hi">Super Converter</h1>
-          <label htmlFor="minutes">Minutes</label>
-          <input
-            value={minutes}
-            id="minutes"
-            placeholder="Minutes"
-            type="number"
-            onChange={onChange}
-          />
-          <h4>input value {minutes}</h4>
-          <label htmlFor="hours">Hours</label>
-          <input id="hours" placeholder="Hours" type="number" />
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              value={minutes}
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              //3.6 이벤트가 발생함을 알려주는 이벤트 리스너
+              onChange={onChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="hours">Hours</label>
+            <input
+              value={Math.round(minutes / 60)}
+              id="hours"
+              placeholder="Hours"
+              type="number"
+              disabled
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
         </div>
       );
     }
