@@ -9,6 +9,7 @@
   <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
   <!-- 바벨 import -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- 컴파일러로 바벨 사용 -->
   <script type="text/babel">
     function App() {
       // 3.5 useState 를 console로 출력해보면 배열이 나온다.(value, modifier)
@@ -26,7 +27,7 @@
         reset();
         setFlipped((current) => !current);
       };
-      // 3.7 아래와 같이 하는것은 오류가 발생할 수 있다.
+      // 3.7 아래와 같이 하는것은 오류가 발생할 수 있다.(이유 찾아보기)
       // const onFlip = () => setFlipped(!flipped);
       return (
         <div>
@@ -38,7 +39,7 @@
               id="minutes"
               placeholder="Minutes"
               type="number"
-              //3.6 이벤트가 발생함을 알려주는 이벤트 리스너
+              // 3.6 이벤트가 발생함을 알려주는 이벤트 리스너. 사용자가 input에 입력한 값을 state에 전달.
               onChange={onChange}
               disabled={flipped === true}
             />
@@ -50,16 +51,23 @@
               id="hours"
               placeholder="Hours"
               type="number"
+              // 3.6 이벤트가 발생함을 알려주는 이벤트 리스너. 사용자가 input에 입력한 값을 state에 전달.
               onChange={onChange}
               disabled={flipped === false}
             />
           </div>
           <button onClick={reset}>Reset</button>
-          <button onClick={onFlip}>Flip</button>
+          <button onClick={onFlip}>{flipped ? "Turn back" : "Flip!"}</button>
         </div>
       );
     }
+    // import { createRoot } from "react-dom/client";
+    // const container = document.getElementById("root");
+    // const root = createRoot(container);
+    // react 18버젼으로 수정 필요
+    // root.render(<App />);
     const root = document.getElementById("root");
+    // ReactDOM으로 root에 App 랜더
     ReactDOM.render(<App />, root);
   </script>
 </html>
